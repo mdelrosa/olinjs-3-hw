@@ -26,7 +26,6 @@ $(function () {
       $(this).removeAttr('checked');
     });
 
-    // $.post("/orders", $('#newform').serialize());
 
     return false;
   });
