@@ -16,15 +16,15 @@ exports.index = function(req, res){
 exports.new_form = function(req, res){
   if (req.path === '/ingredient/new')
     res.render('add_ingredient', {title: "Add an Ingredient"})
- //  else (req.path === '/orders/new')
- //  	Ingredient.find({}).exec(function(err, db_ingr) {
- //  		if(err)
- //  			console.log("could not find ingredients")
- //  	  	res.render('orders_new', {
- //  		title: "Orders",
- //  		ingredients: db_ingr
- //  	    });
-	// });
+  else (req.path === '/orders/new')
+  	Ingredient.find({}).exec(function(err, db_ingr) {
+  		if(err)
+  			console.log("could not find ingredients")
+  	  	res.render('orders_new', {
+  		title: "Orders",
+  		ingredients: db_ingr
+  	    });
+	});
 };
 
 exports.create = function(req, res){
