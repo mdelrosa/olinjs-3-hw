@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1=title
+
+  |<form method="post" enctype="multipart/form-data">
+  p
+    label Name: 
+    input(name='name')
+  p
+    label Cost: 
+    input(name='cost')
+  p
+    label Submit: 
+    input(type='submit', name="submit")
+  |</form>

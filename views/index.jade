@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  div(id='leftblock') 
+    form(method="get", action="/order")
+      button(type='submit') See current orders!     

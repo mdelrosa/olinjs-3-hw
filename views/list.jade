@@ -1,0 +1,10 @@
+extends index
+
+block content
+div
+  if (ingredients.length > 0)
+    for ingredient, i in ingredients
+      div(value=ingredient)
+        p #{ingredient.name} costs #{ingredient.cost}
+  else
+    p No ingredients in the database!

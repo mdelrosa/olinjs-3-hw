@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1=title
+  div(id='leftblock')
+    form(method='post', action='/orders/new', id='newform', enctype='multipart/form-data')
+      | Select Ingredients:
+      br
+      for ingredient, i in ingredients
+        input(type='checkbox', name=ingredient.name, id="newinput") 
+        | #{ingredient.name}: #{ingredient.cost} dollars
+        br
+      button(type="submit") 
+        | Place Order
+    form(method='get', action='/order')
+      button(type='submit')
+        | Return to Orders
