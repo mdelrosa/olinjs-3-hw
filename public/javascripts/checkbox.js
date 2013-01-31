@@ -22,16 +22,21 @@ $(function () {
     	ingredients: actual_ingr
     });
 
+    $('input:checkbox:checked').each(function () {
+      $(this).removeAttr('checked');
+    });
+
     // $.post("/orders", $('#newform').serialize());
 
     return false;
   });
 
   $('.confirm_order').click(function() {
-  	var orderID = $(this).ID;
-	  console.log(orderID);
+  	var orderID = $(this).attr('ID');
 
 	  $.post('/order/complete', {ID: orderID} );
+
+    $(this).parent().remove()
 
   })
 });

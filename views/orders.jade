@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
   div(id='leftblock') Orders Placed
-    div
+    div(id='order_list')
       if (typeof orders !== 'undefined' && orders.length > 0)
         for order, i in orders
           div

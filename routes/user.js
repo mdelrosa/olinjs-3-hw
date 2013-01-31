@@ -83,9 +83,10 @@ exports.order_post = function(req, res) {
 
 exports.order_submit = function(req, res) {
 	console.log(req.body)
-	Order.remove({_id: req.body.id}, function(err) {
-		if(err) console.log(err)
+	Order.remove({_id: req.body.ID}, function(err) {
+		if(err){
+			console.log(err)
+		}
 		return console.log('removed')
 	});
-
 }
