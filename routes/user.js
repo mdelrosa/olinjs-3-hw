@@ -55,7 +55,6 @@ exports.orders = function(req, res){
 	            ingredients: db_ingr,
 	            orders: db_ord
 	          });
-	          console.log(db_ord[0]._id)
             }
         });
     });
