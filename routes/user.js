@@ -49,13 +49,14 @@ exports.orders = function(req, res){
 	  	Order.find({}).exec(function(err, db_ord) {
 	  		if(err) 
 	  	      console.log('could not find orders')
-  			else
-  		      console.log('here')
+  			else {
        	      res.render('orders',{
 	            title: "Burger App",
 	            ingredients: db_ingr,
 	            orders: db_ord
 	          });
+	          console.log(db_ord[0]._id)
+            }
         });
     });
 }
@@ -68,12 +69,23 @@ exports.clear = function(req, res){
 }
 
 exports.order_post = function(req, res) {
-  Ingredient.find({}).exec(function(err, db_ingr) {
-    if 
-      (err) console.log("nope")
-    else
-	  res.redirect('/orders/new');
-	});
+  console.log(req.body)
+  var order = new Order({
+  	customer: req.body.customer,
+  	ingredients: req.body.ingredients
+  });
+  order.save(function(err) {
+  	if(err) {
+  		console.log(err)
+	}
+  });
 };
 
-  
+exports.order_submit = function(req, res) {
+	console.log(req.body)
+	Order.remove({_id: req.body.id}, function(err) {
+		if(err) console.log(err)
+		return console.log('removed')
+	});
+
+}

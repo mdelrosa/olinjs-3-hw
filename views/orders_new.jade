@@ -3,15 +3,18 @@ extends layout
 block content
   h1=title
   div(id='leftblock')
-    form(method='post', action='/orders/new', id='newform', enctype='multipart/form-data')
-      | Select Ingredients:
+    | Enter your name:
+    br
+    input(class="customer", type="text)
+    br
+    | Select Ingredients:
+    br
+    for ingredient, i in ingredients
+      input(class="ingr_checkbox", type='checkbox', name=ingredient.name, id="newinput", cost=ingredient.cost) 
+      | #{ingredient.name}: #{ingredient.cost} dollars
       br
-      for ingredient, i in ingredients
-        input(type='checkbox', name=ingredient.name, id="newinput") 
-        | #{ingredient.name}: #{ingredient.cost} dollars
-        br
-      button(type="submit") 
-        | Place Order
-    form(method='get', action='/order')
-      button(type='submit')
+    button#submit_button(type="button") 
+      | Place Order
+    a(href='/order')
+      button(type='button')
         | Return to Orders

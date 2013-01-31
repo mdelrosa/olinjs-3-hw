@@ -1,39 +1,37 @@
-var models = require('models.js');
-
 // checkbox.js
 $(function () {
-  $('#newform').on('submit', function () {
-    $.post("/orders", $('#newform').serialize());
+  $('#submit_button').click(function () {
 
-    var inputs = $('#newform: input');
+    var ingr_list = []
+    var ingr_count = 0;
 
-    var ingrList = []
+    $('input:checkbox:checked').each(function () {
+    	ingr_list.push({name: $(this).attr('name'), cost: $(this).attr('cost')});
+    	ingr_count+=1
+    })
 
-    inputs.each(function() {
-    	if this.script(src='/javascripts/.js')
-    	  ingrList.push(this)
-    });
-
-    var newOrder = new Order {
-    	ingredients: ingrList
+    var actual_ingr = [];
+    for (i=0;i<ingr_count;i++){
+    	actual_ingr.push(ingr_list[i]);
     }
 
-    console.log(newOrder)
-    console.log("here")
+    var cust_name = $('input:text').val();
 
-    newOrder.save(function (err) {
-    	if (err) console.log('error saving order')
-    })
+    $.post('/orders/new', {
+    	customer: cust_name,
+    	ingredients: actual_ingr
+    });
 
-    var li = $('<li>' + $('#newinput').val() + '</li>')
-    $('#todolist').append(li);
-
-    var form = $('<form method="post" action="/delete/' + $('#todolist li').length + '"><button>Delete</button></form>')
-    $(li).append(form);
-
-    form.on('submit', function () {
-      // ...
-    })
+    // $.post("/orders", $('#newform').serialize());
 
     return false;
+  });
+
+  $('.confirm_order').click(function() {
+  	var orderID = $(this).ID;
+	  console.log(orderID);
+
+	  $.post('/order/complete', {ID: orderID} );
+
   })
+});

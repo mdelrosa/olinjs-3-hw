@@ -7,16 +7,10 @@ block content
       if (typeof orders !== 'undefined' && orders.length > 0)
         for order, i in orders
           div
-            p #{order.name}'s Order:
-            for ingredient, i in order.ingredients
-               p ${ingredient}
-               | var totalCost = 0; 
-               | for (i=0;i<order.ingredients.length;i++) {totalCost += ingredient.cost}
-               p Total: ${totalCost}
+            p(class='confirm_p', ID=order._id) #{order.customer}'s Order:
+              button(type='submit', class='confirm_order', ID=order._id) Submit Order
       else
         p No orders in the database!
-    form(method="get", action="/order")
-      button(type='submit') Submit an Order!
     form(method="get", action="/orders/new")
       button(type='submit') Add a new Order!
 

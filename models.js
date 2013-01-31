@@ -14,7 +14,8 @@ var IngrSchema = new Schema({
 
 // schema for orders
 var OrdSchema = new Schema({
-  ingredients: [{type: Schema.Types.ObjectId, ref: 'Ingredient'}]
+  customer: String,
+  ingredients: Array
 });
 
 var Ingredient = mongoose.model('Ingredient', IngrSchema)
@@ -22,4 +23,4 @@ var Order = mongoose.model('Order', OrdSchema)
 
 // exports
 exports.Ingredient = Ingredient;
-exports.Order = Order
+exports.Order = Order;
